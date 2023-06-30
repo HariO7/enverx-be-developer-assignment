@@ -31,7 +31,6 @@ export const updatePostMiddleware = (
     return res.status(400).json({ error: "Missing or empty required fields" });
   }
   const { title, content, author } = req.body;
-  console.log("title", title);
 
   if (
     (!title || title.trim() === "") &&
