@@ -19,5 +19,15 @@ export const createPost = (req: Request, res: Response) => {
     })
     .catch((err) => {
       res.status(500).json({ err });
+    });
+};
+
+export const getAllposts = (req: Request, res: Response) => {
+  return Post.find()
+    .then((data) => {
+      res.status(200).json({ data });
     })
+    .catch((err) => {
+      res.status(501).json({ err });
+    });
 };
