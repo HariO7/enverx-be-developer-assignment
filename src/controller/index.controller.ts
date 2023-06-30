@@ -1,7 +1,23 @@
 import { Request, Response } from "express";
+import Post from "../models/Post";
+import mongoose from "mongoose";
 
-export const home = (req: Request, res: Response) => {
-  return res.status(200).json({ message: "hello world!" });
+export const createPost = (req: Request, res: Response) => {
+  const { title, content, author } = req.body;
+
+  const post = new Post({
+    _id: new mongoose.Types.ObjectId(),
+    title,
+    content,
+    author,
+  });
+
+  return post
+    .save()
+    .then((post) => {
+      res.status(201).json({ post });
+    })
+    .catch((err) => {
+      res.status(500).json({ err });
+    })
 };
-
-
